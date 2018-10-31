@@ -1,15 +1,16 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, FlatList, ActivityIndicator, Animated, View  } from 'react-native';
+import { ScrollView, StyleSheet, Text, FlatList, ActivityIndicator, Animated, View, Button  } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { MaterialCommunityIcons as Icon } from '@expo/vector-icons';
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
-import MLBGamedayApi from '../api/MLBGamedayApi';
+
+import MLBGamedayApi from './../api/MLBGamedayApi';
 import { DateBar } from '../components/app';
 
 
 export default class GamesScreen extends React.Component {
   static navigationOptions = {
-    title: 'Games',
+    title: 'GAMES',
   };
 
   constructor(props) {
@@ -36,7 +37,8 @@ export default class GamesScreen extends React.Component {
     var month = date.getMonth() + 1;
     var day = date.getDate();
 
-    MLBGamedayApi.getListOfGamesForDay(year, month, day).then(function(data) {
+    MLBGamedayApi.getAllGameDataForDay(year, month, day).then(function(data) {
+      //filter out null entries
       data = data.filter(function(d) { return !!d; });
       this.setState({games: data}); 
       this.setState({isLoading: false});
@@ -83,8 +85,8 @@ export default class GamesScreen extends React.Component {
   renderSubtitle = (item) => {
     return (
       <Animated.View style={{height: this.listItemHeight}}>
-        <View>
-          <Button title="Go to videos" onPress={() => this.onVideosPress(item)} />
+        <View style={{ alignItems:"center", paddingLeft:40 }}>
+          <Button title="Videos" onPress={() => this.onVideosPress(item)} />
         </View>
       </Animated.View>
     );
@@ -163,7 +165,7 @@ export default class GamesScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', },
+  container: { flex: 1, backgroundColor: '#fff' },
   listItemContainer: { backgroundColor: "white" },
-  dateBarContainer: { borderBottomWidth: 1, borderColor: "gray", },
+  dateBarContainer: { borderBottomWidth: 1, borderColor: "gray" }
 });

@@ -39,22 +39,25 @@ export default class DateBar extends React.Component {
     }
 
     render() {
-       return (
-        <View style={styles.container}>
+        return (
+          <View style={styles.container}>
             <TouchableOpacity onPress={this.onLeftArrowPress}>
-            <Icon name="chevron-left" style={styles.icon} />
+              <Icon name="chevron-left" style={styles.icon} />
             </TouchableOpacity>
+    
             <Text style={styles.date}>{this.state.date.toDateString()}</Text>
+    
             <TouchableOpacity onPress={this.onRightArrowPress}>
-            <Icon name="chevron-right" style={styles.icon} />
+              <Icon name="chevron-right" style={styles.icon} />
             </TouchableOpacity>
-        </View>
-       );
+          </View>
+        );
+      }
+    
     }
-}
-
-const styles = StyleSheet.create({
-    container: { flex: 1, flexDirection: "row", justifyContent: "space-between", },
-    date: { paddingTop: 8, fontWeight: "bold", },
-    icon: { fontSize: 30, color: "red" },
-});
+    
+    const styles = StyleSheet.create({
+      container: { flexDirection: "row", justifyContent: "space-between", backgroundColor: "#DDDDDD", paddingVertical: 10, },
+      date: { paddingTop: 8, fontWeight: "bold", },
+      icon: { fontSize: 30, color: "red" },
+    });

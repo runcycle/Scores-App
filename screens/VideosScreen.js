@@ -36,7 +36,7 @@ export default class VideosScreen extends React.Component {
           <VideoPlayer
             videoProps={{
               resizeMode: Video.RESIZE_MODE_CONTAIN,
-              source: { uri: video.videoURL,},
+              source: { uri: video.videoURL },
             }}
             isPortrait={true}
             playFromPositionMillis={0}
@@ -49,7 +49,7 @@ export default class VideosScreen extends React.Component {
 
   render() {
     if (this.state.isLoading) {
-      return <ActivityIndicator animating={true} size="large" style={{paddingTop:20}} />
+      return <ActivityIndicator animating={true} size="large" style={{paddingTop:275}} />
     }
 
     return (
